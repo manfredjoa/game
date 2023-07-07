@@ -28,21 +28,35 @@ const createNewGame = () => {
 
 createNewGame() //This creates the first game when you open the browser.
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    if (button.id === "newGame") { return }
 
-    button.setAttribute("disabled", "disabled")
+buttons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    if (e.target.id === "newGame") { return } // This prevents the New Game button from being disabled.
+
+    for (let i = 0; i < word.length; i++) {
+      if (e.target.id === word.charAt([i])) {
+        spans[i].innerHTML = '' // This removes the "__" before replacing with a letter.
+        spans[i].innerHTML = e.target.id.toUpperCase()
+      }
+    }
+    button.setAttribute("disabled", "disabled") // This disables buttons on click.
   })
 })
 
 document.addEventListener("keydown", (e) => {
   buttons.forEach(button => {
+
+    for (let i = 0; i < word.length; i++) {
+      if (e.key === word.charAt([i])) {
+        spans[i].innerHTML = '' // This removes the "__" before replacing with a letter.
+        spans[i].innerHTML = e.key.toUpperCase()
+      }
+    }
     if (e.key === button.id) {
-      button.setAttribute("disabled", "disabled")
+      button.setAttribute("disabled", "disabled") // This disables buttons on keydown.
     }
   })
 })
-// These will disable the buttons and prevent them from being clicked. Build on these to change INNERTEXT to the letter selected.
+// I feel like I may be able to combine these into 1 function? I can have conditionals using e.type, but keydown has to be added onto the document.
 
 newGame.addEventListener("click", createNewGame)
