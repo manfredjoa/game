@@ -17,48 +17,50 @@
   <!-- This will be the space where hangman is drawn -->
 
 
-  <p class="words">
-    <span>__</span>
-    <span>__</span>
-    <span>__</span>
-    <span>__</span>
-    <span>__</span>
+  <p class="blankSpaces">
+    <span data-number="0"></span>
+    <span data-number="1"></span>
+    <span data-number="2"></span>
+    <span data-number="3"></span>
+    <span data-number="4"></span>
+    <span data-number="5"></span>
   </p>
-  <!-- I am thinking this p will need as many spans as the word being guessed. The spans will probably have to be empty and I can probably 
-write a FOR LOOP where when a random STRING is chosen from an ARRAY, it will insert __ as INNERTEXT, quantity equal to the STRING.LENGTH. 
-Maybe setting a DATA-NUMBER attribute equal to the value of i in the loop may help?  -->
+  <!-- I will need to add a lot more spans. I just read about having a player type in a word of their choosing for people to guess. I can
+  probably add a button for that option, so it would be good to have more spans just in case. -->
 
   <button id="hint">HINT</button>
 
   <div class="buttons">
-    <button id="a">A</button>
-    <button id="b">B</button>
-    <button id="c">C</button>
-    <button id="d">D</button>
-    <button id="e">E</button>
-    <button id="f">F</button>
-    <button id="g">G</button>
-    <button id="h">H</button>
-    <button id="i">I</button>
-    <button id="j">J</button>
-    <button id="k">K</button>
-    <button id="l">L</button>
-    <button id="m">M</button>
+    <button class="letters" id="a">A</button>
+    <button class="letters" id="b">B</button>
+    <button class="letters" id="c">C</button>
+    <button class="letters" id="d">D</button>
+    <button class="letters" id="e">E</button>
+    <button class="letters" id="f">F</button>
+    <button class="letters" id="g">G</button>
+    <button class="letters" id="h">H</button>
+    <button class="letters" id="i">I</button>
+    <button class="letters" id="j">J</button>
+    <button class="letters" id="k">K</button>
+    <button class="letters" id="l">L</button>
+    <button class="letters" id="m">M</button>
     </br>
-    <button id="n">N</button>
-    <button id="o">O</button>
-    <button id="p">P</button>
-    <button id="q">Q</button>
-    <button id="r">R</button>
-    <button id="s">S</button>
-    <button id="t">T</button>
-    <button id="u">U</button>
-    <button id="v">V</button>
-    <button id="w">W</button>
-    <button id="x">X</button>
-    <button id="y">Y</button>
-    <button id="z">Z</button>
+    <button class="letters" id="n">N</button>
+    <button class="letters" id="o">O</button>
+    <button class="letters" id="p">P</button>
+    <button class="letters" id="q">Q</button>
+    <button class="letters" id="r">R</button>
+    <button class="letters" id="s">S</button>
+    <button class="letters" id="t">T</button>
+    <button class="letters" id="u">U</button>
+    <button class="letters" id="v">V</button>
+    <button class="letters" id="w">W</button>
+    <button class="letters" id="x">X</button>
+    <button class="letters" id="y">Y</button>
+    <button class="letters" id="z">Z</button>
   </div>
+
+  <button id="newGame">New Game</button>
 
 </body>
 
