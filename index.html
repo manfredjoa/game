@@ -11,28 +11,27 @@
 
 <body>
 
-  <h1>Hangman</h1>
+  <h1>HANGMAN</h1>
 
   <section class="hangman"></section>
   <!-- This will be the space where hangman is drawn -->
 
 
-  <p class="blankSpaces">
-    <span data-number="0"></span>
-    <span data-number="1"></span>
-    <span data-number="2"></span>
-    <span data-number="3"></span>
-    <span data-number="4"></span>
-    <span data-number="5"></span>
-    <span data-number="6"></span>
-    <span data-number="7"></span>
-    <span data-number="8"></span>
-    <span data-number="9"></span>
-    <span data-number="10"></span>
-    <span data-number="11"></span>
-  </p>
-  <!-- I will need to add a lot more spans. I just read about having a player type in a word of their choosing for people to guess. I can
-  probably add a button for that option, so it would be good to have more spans just in case. -->
+  <div class="blankSpaces">
+    <!-- <p data-number="0"></p>
+    <p data-number="1"></p>
+    <p data-number="2"></p>
+    <p data-number="3"></p>
+    <p data-number="4"></p>
+    <p data-number="5"></p>
+    <p data-number="6"></p>
+    <p data-number="7"></p>
+    <p data-number="8"></p>
+    <p data-number="9"></p> -->
+
+  </div>
+  <!-- After making all these spans, I'm realizing that if I give the player an option to type their own word
+  to guess, I can create a function that adds html elements based on the number of characters.... -->
 
   <button id="hint">HINT</button>
   <!-- I probably don't need this -->
