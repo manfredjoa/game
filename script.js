@@ -3,33 +3,16 @@ const guessingWords = ['hello', 'world', 'string', 'random', 'javascript', 'supe
 const buttons = document.querySelectorAll("button")
 const newGame = document.querySelector("#newGame")
 const paragraphs = document.getElementsByTagName("p")
-const div = document.querySelector(".blankSpaces")
+const blankSpaces = document.querySelector(".blankSpaces")
+const hidden = document.querySelector(".hidden")
 let word = ''
 let wrongLetters = [] // Draw function will be executed based off of the length of this.
 let wrongLetterCounter = 0
 
-const createNewGame = () => {
-  word = guessingWords[Math.floor(Math.random() * guessingWords.length)]
-  console.log(word)
+const canvas = document.querySelector("canvas")
+console.log(canvas.width)
+console.log(canvas.height)
 
-  for (let i = 0; i < word.length; i++) {
-    const newParagraph = document.createElement("p")
-    div.appendChild(newParagraph)
-
-  } for (let i = 0; i < word.length; i++) {
-    paragraphs[i].innerText = ''
-
-  } for (let i = 0; i < word.length; i++) {
-    paragraphs[i].innerText = "__"
-
-  } buttons.forEach(button => {
-    button.removeAttribute("disabled", "disabled")
-    wrongLetters = []
-  })
-}
-// Need to find a way where it won't select a word that was just chosen.
-
-createNewGame() // This creates the first game when you open the browser.
 
 buttons.forEach(button => {
   button.addEventListener("click", (e) => {
@@ -59,8 +42,8 @@ buttons.forEach(button => {
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-document.addEventListener("keydown", (e) => {
-  if (alphabet.includes(e.key) === false) { return }
+document.addEventListener("keydown", handleKeyDown = (e) => {
+  if (alphabet.includes(e.key) === false) { return } // This prevents keys outside of letters to push into the wrongLetters array.
 
   for (let i = 0; i < word.length; i++) {
     if (e.key === word.charAt([i])) {
@@ -91,6 +74,32 @@ document.addEventListener("keydown", (e) => {
 })
 // I feel like I may be able to combine these into 1 function? I can have conditionals using e.type, but keydown has to be added onto the document.
 
+function createNewGame() {
+  word = guessingWords[Math.floor(Math.random() * guessingWords.length)]
+  console.log(word)
+
+  for (let i = 0; i < word.length; i++) {
+    const newParagraph = document.createElement("p")
+    blankSpaces.appendChild(newParagraph)
+
+  } for (let i = 0; i < word.length; i++) {
+    paragraphs[i].innerText = ''
+
+  } for (let i = 0; i < word.length; i++) {
+    paragraphs[i].innerText = "__"
+
+  } buttons.forEach(button => {
+    button.removeAttribute("disabled", "disabled")
+    wrongLetters = []
+  })
+  document.addEventListener("keydown", handleKeyDown)
+  hidden.classList.remove("overlay")
+  hangman()
+}
+// Need to find a way where it won't select a word that was just chosen.
+
+createNewGame() // This creates the first game when you open the browser.
+
 newGame.addEventListener("click", () => {
   for (let i = word.length - 1; i >= 0; i--) {
     paragraphs[i].remove() // This removes all the p tags before new ones are created.
@@ -104,13 +113,22 @@ function hangman() {
   if (canvas.getContext("2d")) {
     const draw = canvas.getContext("2d")
     if (wrongLetters.length === 0) {
+      draw.clearRect(0, 0, canvas.width, canvas.height)
       draw.beginPath()
-      draw.moveTo(5, 140)
-      draw.lineTo(295, 140)
-      draw.moveTo(25, 140)
-      draw.lineTo(25, 10)
-      draw.lineTo(150, 10)
-      draw.lineTo(150, 25)
+      draw.moveTo(25, 325)
+      draw.lineTo(909, 325)
+      draw.moveTo(50, 325)
+      draw.lineTo(50, 315)
+      draw.lineTo(60, 315)
+      draw.lineTo(60, 305)
+      draw.lineTo(70, 305)
+      draw.lineTo(70, 295)
+      draw.lineTo(864, 295)
+      draw.lineTo(864, 305)
+      draw.lineTo(874, 305)
+      draw.lineTo(874, 315)
+      draw.lineTo(884, 315)
+      draw.lineTo(884, 325)
       draw.stroke()
 
     } if (wrongLetters.length === 1) {
@@ -147,11 +165,13 @@ function hangman() {
       draw.moveTo(150, 95)
       draw.lineTo(170, 125)
       draw.stroke()
+
+      hidden.classList.add("overlay")
+      document.removeEventListener("keydown", handleKeyDown)
     }
   }
 }
 
 hangman() // This will give us the initial drawing when the page is loaded.
 
-// Need to add a function that prevents buttons from being clicked/keydowned after game is solved(POINTER EVENTS: NONE).
 // How does the code know when the game is solved? Some sort of checking function, but I'm not sure what it would check for.
