@@ -13,30 +13,20 @@
 
   <h1>HANGMAN</h1>
 
-  <section class="hangman"></section>
-  <!-- This will be the space where hangman is drawn -->
+  <section class="overlay"></section>
+
+  <canvas id="hangman">
+    <!-- Need to figure out how to use this with width/height set to % instead of pixels.
+    It seems like the arguments I enter get converted to % as well. -->
+  </canvas>
 
 
-  <div class="blankSpaces">
-    <!-- <p data-number="0"></p>
-    <p data-number="1"></p>
-    <p data-number="2"></p>
-    <p data-number="3"></p>
-    <p data-number="4"></p>
-    <p data-number="5"></p>
-    <p data-number="6"></p>
-    <p data-number="7"></p>
-    <p data-number="8"></p>
-    <p data-number="9"></p> -->
+  <section class="blankSpaces"></section>
 
-  </div>
-  <!-- After making all these spans, I'm realizing that if I give the player an option to type their own word
-  to guess, I can create a function that adds html elements based on the number of characters.... -->
+  <!-- <button id="hint">HINT</button> -->
+  <!-- I probably don't need this unless I want to write a function that gives a letter for a life. -->
 
-  <button id="hint">HINT</button>
-  <!-- I probably don't need this -->
-
-  <div class="buttons">
+  <section class="buttons">
     <button class="letters" id="a">A</button>
     <button class="letters" id="b">B</button>
     <button class="letters" id="c">C</button>
@@ -64,7 +54,7 @@
     <button class="letters" id="x">X</button>
     <button class="letters" id="y">Y</button>
     <button class="letters" id="z">Z</button>
-  </div>
+  </section>
 
   <button id="newGame">New Game</button>
 

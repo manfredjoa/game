@@ -26,7 +26,7 @@ const createNewGame = () => {
 }
 // Need to find a way where it won't select a word that was just chosen.
 
-createNewGame() //This creates the first game when you open the browser.
+createNewGame() // This creates the first game when you open the browser.
 
 buttons.forEach(button => {
   button.addEventListener("click", (e) => {
@@ -64,3 +64,20 @@ newGame.addEventListener("click", () => {
   }
   createNewGame()
 })
+
+
+// function draw() {
+  //   const canvas = document.getElementById("hangman")
+  //   if (canvas.getContext("2d")) {
+    //     const hangman = canvas.getContext("2d")
+    //   }
+    // }
+    // draw()
+
+// Learning how to draw on a canvas!
+    
+// Need to add a function that prevents buttons from being clicked/keydowned after game is solved(POINTER EVENTS: NONE).
+// How does the code know when the game is solved? Some sort of checking function, but I'm not sure what it would check for.
+    
+// I think I can make 1 draw function with if conditionals and have an empty array where incorrect letters are pushed into it.
+// Depending on the length of the array, certain strokes will be drawn.

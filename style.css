@@ -6,7 +6,7 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 100vh;
 }
 
@@ -26,14 +26,28 @@ button {
   font-size: 24px;
 }
 
-/* span {
-  display: inline-block;
-  width: 30px;
-  text-align: center;
-} */
-
 p {
   display: inline-block;
   width: 30px;
   text-align: center;
+}
+
+/* .overlay {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur 5px;
+  position: absolute;
+} */
+
+/* Buttons cannot be clicked with overlay on top of it but buttons can still be pressed. */
+
+canvas {
+  width: 100%;
+  height: 50%;
+  border: 1px solid black;
 }
