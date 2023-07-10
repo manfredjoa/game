@@ -5,6 +5,8 @@ const newGame = document.querySelector("#newGame")
 const paragraphs = document.getElementsByTagName("p")
 const div = document.querySelector(".blankSpaces")
 let word = ''
+let wrongLetters = [] // Draw function will be executed based off of the length of this.
+let wrongLetterCounter = 0
 
 const createNewGame = () => {
   word = guessingWords[Math.floor(Math.random() * guessingWords.length)]
@@ -22,6 +24,7 @@ const createNewGame = () => {
 
   } buttons.forEach(button => {
     button.removeAttribute("disabled", "disabled")
+    wrongLetters = []
   })
 }
 // Need to find a way where it won't select a word that was just chosen.
@@ -36,27 +39,55 @@ buttons.forEach(button => {
       if (e.target.id === word.charAt([i])) {
         paragraphs[i].innerHTML = '' // This removes the "__" before replacing with a letter.
         paragraphs[i].innerHTML = e.target.id.toUpperCase()
+      
+      } else {
+        wrongLetterCounter++
+      
+      } if (wrongLetterCounter === word.length) {
+        wrongLetters.push(e.target.id)
+        wrongLetterCounter = 0
       }
+    }
+    if (wrongLetterCounter > 0 && wrongLetterCounter < word.length) {
+      wrongLetterCounter = 0 // This prevents the counter from being carried over if it did not equal word.length.
     }
     button.setAttribute("disabled", "disabled") // This disables buttons on click.
+    console.log(wrongLetters)
   })
 })
+
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 document.addEventListener("keydown", (e) => {
-  buttons.forEach(button => {
+  if (alphabet.includes(e.key) === false)  { return }
+    
+  for (let i = 0; i < word.length; i++) {
+    if (e.key === word.charAt([i])) {
+      paragraphs[i].innerHTML = '' // This removes the "__" before replacing with a letter.
+      paragraphs[i].innerHTML = e.key.toUpperCase()
+      
+    } else {
+      wrongLetterCounter++
+    
+    } if (wrongLetters.includes(e.key) === true) {
+      wrongLetterCounter = 0
 
-    for (let i = 0; i < word.length; i++) {
-      if (e.key === word.charAt([i])) {
-        paragraphs[i].innerHTML = '' // This removes the "__" before replacing with a letter.
-        paragraphs[i].innerHTML = e.key.toUpperCase()
-      }
+    } else if (wrongLetterCounter === word.length) {
+      wrongLetters.push(e.key)
+      wrongLetterCounter = 0
     }
+  } if (wrongLetterCounter > 0 && wrongLetterCounter < word.length) {
+    wrongLetterCounter = 0 // This prevents the counter from being carried over if it did not equal word.length.
+  } 
+  
+  buttons.forEach(button => {
     if (e.key === button.id) {
-      button.setAttribute("disabled", "disabled") // This disables buttons on keydown.
+      button.setAttribute("disabled", "disabled")
     }
   })
+  console.log(wrongLetters)
 })
-// I feel like I may be able to combine these into 1 function? I can have conditionals using e.type, but keydown has to be added onto the document.
+    // I feel like I may be able to combine these into 1 function? I can have conditionals using e.type, but keydown has to be added onto the document.
 
 newGame.addEventListener("click", () => {
   for (let i = word.length - 1; i >= 0; i--) {
