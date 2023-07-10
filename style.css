@@ -6,11 +6,8 @@
 body {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   height: 100vh;
 }
-
-.hangman {}
 
 .letters {
   width: 50px;
@@ -48,6 +45,6 @@ p {
 
 canvas {
   width: 100%;
-  height: 50%;
+  height: 350px;
   border: 1px solid black;
 }
