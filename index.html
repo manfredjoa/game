@@ -7,17 +7,20 @@
   <title>Hangman</title>
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
+  <link href="https://fonts.cdnfonts.com/css/brankovic" rel="stylesheet">
 </head>
 
 <body>
 
-  <h1>HANGMAN</h1>
+  <h1>H A N G M A N</h1>
 
-  <section class="hidden"></section>
+  <section class="hidden">
+    <h2 class="hidden">CONGRATULATIONS</br>YOU WIN!</h2>
+    <h2 class="hidden" id="lose">SORRY</br>YOU LOSE!</h2>
+    <button class="hidden" id="overlayNewGame">NEW GAME</button>
+  </section>
 
-  <canvas width="934" height="350" id="hangman">
-  </canvas>
-
+  <canvas width="934" height="325" id="hangman"></canvas>
 
   <section class="blankSpaces"></section>
 
@@ -54,7 +57,7 @@
     <button class="letters" id="z">Z</button>
   </section>
 
-  <button id="newGame">New Game</button>
+  <button id="newGame">NEW GAME</button>
 
 </body>
 

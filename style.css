@@ -3,11 +3,33 @@
   text-align: center;
 }
 
+h1,
+button,
+.changeFont,
+.hidden {
+  font-family: 'Brankovic', sans-serif;
+}
+
+h1,
+.changeFontColor,
+#lose {
+  color: crimson;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: -10px;
+  font-weight: bolder;
+  font-size: 50px;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
+  background-color: rgb(165, 150, 150);
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
 }
 
 .letters {
@@ -18,16 +40,23 @@ body {
 
 button {
   cursor: pointer;
-  border: 1px solid black;
+  background-color: black;
+  color: white;
+}
+
+.blankSpaces,
+button {
+  font-size: 24px;
 }
 
 .blankSpaces {
-  font-size: 24px;
+  margin-bottom: -25px;
 }
 
 p {
   display: inline-block;
-  width: 30px;
+  width: 70px;
+  font-size: 40px;
   text-align: center;
 }
 
@@ -38,19 +67,31 @@ p {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(220, 20, 60, .5);
   backdrop-filter: blur 5px;
   position: absolute;
 }
 
-/* Buttons cannot be clicked with overlay on top of it but buttons can still be pressed. */
-
 canvas {
-  border: 1px solid black;
   align-self: center;
+  margin-bottom: -20px;
 }
 
 #newGame {
-  width: 96px;
+  width: 198px;
   align-self: center;
+  padding: 10px;
+  margin-top: 10px;
+  height: 45px;
+}
+
+.hidden {
+  font-size: 100px;
+  display: none;
+}
+
+#overlayNewGame {
+  align-self: center;
+  font-size: 50px;
+  padding: 20px;
 }
