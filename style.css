@@ -3,7 +3,6 @@
   text-align: center;
 }
 
-h1,
 button,
 .changeFont,
 .hiddenSection {
@@ -23,13 +22,18 @@ h1 {
   font-size: 65px;
 }
 
+h1,
+h2 {
+  text-shadow: 5px 5px 5px black;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  background-color: rgb(165, 150, 150);
-  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+  background-color: rgb(109, 107, 107);
+  background-image: url("https://www.transparenttextures.com/patterns/grunge-wall.png");
 }
 
 .letters {
@@ -69,7 +73,7 @@ p {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur 5px;
   position: absolute;
 }
@@ -92,8 +96,30 @@ canvas {
 
 .hiddenSection {
   font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #playAgain {
   padding: 20px;
+  width: 198px;
+  height: 55px;
+  margin-bottom: 10px;
+}
+
+#win,
+#lose {
+  margin-top: 200px;
+  color: crimson;
+}
+
+#win {
+  font-family: 'NIGHTMARE PILLS', sans-serif;
+}
+
+h1,
+#lose {
+  font-family: 'Bloody', sans-serif;
 }

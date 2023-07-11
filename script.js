@@ -1,4 +1,5 @@
-const guessingWords = ['hello', 'world', 'string', 'random', 'javascript']
+const guessingWords = ['string', 'javascript', 'cascading', 'style', 'hypertext', 'language', 'boolean', 'argument', 'attribute', 'variable', 'parameter',
+  'concatenate', 'element', 'selector', 'terminal', 'constant', 'dataset', 'toggle', 'disabled', 'ellipse', 'canvas']
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 const buttons = document.querySelectorAll("button")
@@ -11,7 +12,8 @@ const loseGame = document.querySelector("#lose")
 const playAgain = document.querySelector("#playAgain")
 
 let word = ''
-let wrongLetters = [] // Draw function will be executed based off of the length of this.
+let wordManager = [...guessingWords]
+let wrongLetters = []
 let wrongLetterCounter = 0
 let winCount = 0
 
@@ -19,11 +21,11 @@ let winCount = 0
 // Button click and keydown functions
 buttons.forEach(button => {
   button.addEventListener("click", (e) => {
-    if (e.target.id === "newGame") { return } // This prevents the New Game button from being disabled.
+    if (e.target.id === "newGame") { return }
 
     for (let i = 0; i < word.length; i++) {
       if (e.target.id === word.charAt([i])) {
-        paragraphs[i].innerHTML = '' // This removes the "__" before replacing with a letter.
+        paragraphs[i].innerHTML = ''
         paragraphs[i].innerHTML = e.target.id.toUpperCase()
         paragraphs[i].classList.add("changeFont")
 
@@ -37,21 +39,21 @@ buttons.forEach(button => {
       }
     }
     if (wrongLetterCounter > 0 && wrongLetterCounter < word.length) {
-      wrongLetterCounter = 0 // This prevents the counter from being carried over if it did not equal word.length.
+      wrongLetterCounter = 0
     }
     win()
     button.classList.add("changeFontColor")
-    button.setAttribute("disabled", "disabled") // This disables buttons on click.
+    button.setAttribute("disabled", "disabled")
   })
 })
 
 
 document.addEventListener("keydown", handleKeyDown = (e) => {
-  if (alphabet.includes(e.key) === false) { return } // This prevents keys outside of letters to push into the wrongLetters array.
+  if (alphabet.includes(e.key) === false) { return }
 
   for (let i = 0; i < word.length; i++) {
     if (e.key === word.charAt([i])) {
-      paragraphs[i].innerHTML = '' // This removes the "__" before replacing with a letter.
+      paragraphs[i].innerHTML = ''
       paragraphs[i].innerHTML = e.key.toUpperCase()
       paragraphs[i].classList.add("changeFont")
 
@@ -67,14 +69,14 @@ document.addEventListener("keydown", handleKeyDown = (e) => {
       hangman()
     }
   } if (wrongLetterCounter > 0 && wrongLetterCounter < word.length) {
-    wrongLetterCounter = 0 // This prevents the counter from being carried over if it did not equal word.length.
+    wrongLetterCounter = 0
   }
   win()
 
   buttons.forEach(button => {
     if (e.key === button.id) {
       button.classList.add("changeFontColor")
-      button.setAttribute("disabled", "disabled") // This disables buttons on keydown.
+      button.setAttribute("disabled", "disabled")
     }
   })
 })
@@ -82,8 +84,11 @@ document.addEventListener("keydown", handleKeyDown = (e) => {
 
 // New game function
 function createNewGame() {
-  word = guessingWords[Math.floor(Math.random() * guessingWords.length)]
-  console.log(word)
+  if (wordManager.length == 0) {
+    wordManager = [...guessingWords]
+  }
+
+  word = wordManager.splice(Math.floor(Math.random() * wordManager.length), 1)[0]
 
   for (let i = 0; i < word.length; i++) {
     const newParagraph = document.createElement("p")
@@ -100,15 +105,14 @@ function createNewGame() {
   document.addEventListener("keydown", handleKeyDown)
   hangman()
 }
-// Need to find a way where it won't select a word that was just chosen.
 
-createNewGame() // This creates the first game when you open the browser.
+createNewGame()
 
 
 // New game button functions
 const newGameButtonClick = () => {
   for (let i = word.length - 1; i >= 0; i--) {
-    paragraphs[i].remove() // This removes all the p tags before new ones are created.
+    paragraphs[i].remove()
   }
   hiddenSection.classList.add("hidden")
   hiddenSection.classList.remove("overlay")
@@ -167,14 +171,16 @@ function hangman() {
       draw.beginPath(); draw.moveTo(461, 190); draw.lineTo(445, 250); draw.stroke()
 
     } if (wrongLetters.length === 6) {
-      draw.beginPath(); draw.moveTo(461, 190); draw.lineTo(477, 250); draw.stroke()
+      draw.beginPath(); draw.moveTo(461, 190); draw.lineTo(477, 250)
+      draw.moveTo(454, 100); draw.lineTo(458, 105); draw.moveTo(458, 100); draw.lineTo(454, 105)
+      draw.moveTo(465, 100); draw.lineTo(469, 105); draw.moveTo(469, 100); draw.lineTo(465, 105); draw.stroke()
 
       lose()
     }
   }
 }
 
-hangman() // This will give us the initial drawing when the page is loaded.
+hangman()
 
 
 // Win function
@@ -191,8 +197,10 @@ function win() {
     hiddenSection.classList.add("overlay")
     winGame.classList.remove("hidden")
     playAgain.classList.remove("hidden")
+    document.removeEventListener("keydown", handleKeyDown)
     winCount = 0
   }
+  hangman()
 }
 
 
