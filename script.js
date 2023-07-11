@@ -89,6 +89,7 @@ function createNewGame() {
   }
 
   word = wordManager.splice(Math.floor(Math.random() * wordManager.length), 1)[0]
+  console.log(word)
 
   for (let i = 0; i < word.length; i++) {
     const newParagraph = document.createElement("p")
